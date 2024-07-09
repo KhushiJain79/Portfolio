@@ -1,38 +1,41 @@
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function() {
+  // Toggle menu and header
+  const menu = document.getElementById('menu');
+  const header = document.querySelector('header');
 
-    $('#menu').click(function(){
-      $(this).toggleClass('fa-times');
-      $('header').toggleClass('toggle');
-    });
-  
-    $(window).on('scroll load',function(){
-  
-      $('#menu').removeClass('fa-times');
-      $('header').removeClass('toggle');
-  
-      if($(window).scrollTop() > 0){
-        $('.top').show();
-      }else{
-        $('.top').hide();
-      }
-  
-    });
-  
-    // smooth scrolling 
-  
-    $('a[href*="#"]').on('click',function(e){
-  
-      e.preventDefault();
-  
-      $('html, body').animate({
-  
-        scrollTop : $($(this).attr('href')).offset().top,
-  
-      },
-        500, 
-        'linear'
-      );
-  
-    });
-  
+  menu.addEventListener('click', function() {
+      menu.classList.toggle('fa-times');
+      header.classList.toggle('toggle');
   });
+
+  // Remove classes on scroll or load
+  window.addEventListener('scroll', toggleHeader);
+  window.addEventListener('load', toggleHeader);
+
+  function toggleHeader() {
+      menu.classList.remove('fa-times');
+      header.classList.remove('toggle');
+
+      const topButton = document.querySelector('.top');
+      if (window.scrollY > 0) {
+          topButton.style.display = 'block';
+      } else {
+          topButton.style.display = 'none';
+      }
+  }
+
+  // Smooth scrolling
+  const smoothScrollLinks = document.querySelectorAll('a[href*="#"]');
+  smoothScrollLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: 'smooth'
+          });
+      });
+  });
+});
