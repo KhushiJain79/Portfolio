@@ -292,6 +292,37 @@ html::-webkit-scrollbar-track{
     transform: scale(1.2);
 }
 
+.projects .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:2rem 0;
+   
+}
+
+.projects .box-container .box{
+    height: 20rem;
+    width:26rem;
+    border-radius: 1rem;
+    margin:2rem;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.projects .box-container .box img{
+    height:85%;
+    width:100%;
+    object-fit: cover;
+    border: 1px solid white;
+}
+.projectheading{
+    color:white;
+    text-align:center;
+    
+}
+
 .contact .row{
     display: flex;
     align-items: center;
